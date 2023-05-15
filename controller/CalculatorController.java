@@ -1,10 +1,14 @@
 package pro.sky.hw212.controller;
 
 
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import pro.sky.hw212.Service.CalculatorService;
+
+import javax.swing.plaf.PanelUI;
 
 @RestController
 @RequestMapping("/calculator")
@@ -15,6 +19,10 @@ public class CalculatorController {
         this.calculatorService = calculatorService;
     }
 
+    @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
+    public String greetings() {
+        return "<h1>Долбро пожаловать в калькулятор!<h1>";
+    }
     @RequestMapping("/plus")
     public String plus(@RequestParam(value = "num1", required = false) Double num1,
                        @RequestParam(value = "num2", required = false) Double num2) {
